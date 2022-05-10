@@ -10,6 +10,10 @@ const storeSchema = new Schema({
     price: {
         type: Number,
         required: true,
+    },
+    vencimiento: {
+        type: String,
+        required: true,
     }
 });
 const Product = mongoose.model('Product', storeSchema);
