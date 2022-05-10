@@ -27,8 +27,8 @@ const crearProducto = async (req, res) => {
     try {
         const error = validationResult(req)
         if (error.isEmpty()) {
-            const { name, price } = req.body
-            const producto = new Product({ name, price });
+            const { name, price, vencimiento } = req.body
+            const producto = new Product({ name, price, vencimiento });
             await producto.save()
             res.status(201).json({ producto, msg: "Agregado" })
         } else {
@@ -41,10 +41,10 @@ const crearProducto = async (req, res) => {
 
 const editarProducto = async (req, res) => {
     const { id } = req.params
-    const name = req.body.name
+    const body = req.body
     console.log(req.body)
     await Product.findByIdAndUpdate(id, req.body)
-    res.status(201).json(name)
+    res.status(201).json(body)
 }
 
 const borrarProducto = async (req, res) => {
