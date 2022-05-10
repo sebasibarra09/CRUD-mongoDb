@@ -7,8 +7,10 @@ router.get("/ver", vistaProductos); /* Ver todos los prodcutos de la base*/
 router.get("/rick", consultaAxios); /* Consulta axios a una Api externa*/
 router.get("/ver/:id", vistaUnProducto);
 router.post("/crear", [
-    check("name").not().isEmpty().isLength({ max: 15, min: 4 }).withMessage("El nombre debe tener entre 4 y 15 caracteres")],
-    crearProducto);/* Crear producto con condiciones*/
+    check("name").not().isEmpty().isLength({ max: 15, min: 4 }).withMessage("El nombre debe tener entre 4 y 15 caracteres"),
+    check("price").not().isEmpty().withMessage("El precio debe estar cargado"),
+    check("vencimiento").not().isEmpty().withMessage("El producto debe tener fecha de vencimiento")],
+    crearProducto);  /* Crear producto con condiciones*/
 router.put("/editar/:id", editarProducto); /* Editar producto solo el nombre*/
 router.delete("/eliminar/:id", borrarProducto) /* Eliminar producto por ID*/
 
